@@ -1,0 +1,160 @@
+:root {
+  color: #1f2933;
+  background: #f4f6f8;
+  font-family:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1,
+h2 {
+  color: #18212b;
+  margin-top: 1.5rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #263849;
+  border-radius: 6px;
+  color: white;
+}
+
+nav a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  text-decoration: underline;
+}
+
+form {
+  max-width: 32rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #d7dee5;
+  border-radius: 6px;
+}
+
+form > div {
+  margin-bottom: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #aeb9c4;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+}
+
+input:focus {
+  border-color: #2563a6;
+  outline: 2px solid #b9d8f5;
+  outline-offset: 1px;
+}
+
+button {
+  padding: 0.45rem 0.75rem;
+  background: #e8edf2;
+  border: 1px solid #aeb9c4;
+  border-radius: 4px;
+  color: #18212b;
+  cursor: pointer;
+  font: inherit;
+}
+
+button:hover {
+  background: #dbe3ea;
+}
+
+button:focus-visible {
+  outline: 2px solid #2563a6;
+  outline-offset: 2px;
+}
+
+.blog-list-item,
+.blog {
+  margin: 0.6rem 0;
+  padding: 0.8rem 1rem;
+  background: white;
+  border: 1px solid #d7dee5;
+  border-radius: 6px;
+}
+
+.blog-list-item a {
+  color: #174f80;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.blog-list-item a:hover,
+.blog-list-item a:focus-visible {
+  text-decoration: underline;
+}
+
+.blog > div > div {
+  margin-top: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.notification {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 2px solid;
+  border-radius: 6px;
+  background: white;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.notification.success {
+  color: #176534;
+  background: #e9f7ee;
+  border-color: #3a9b5c;
+}
+
+.notification.error {
+  color: #9b1c1c;
+  background: #fff0f0;
+  border-color: #d64545;
+}
+
+@media (max-width: 36rem) {
+  main {
+    padding-top: 1rem;
+  }
+
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,84 @@
+:root {
+  color: #203040;
+  background: #f3f6f8;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  width: min(50rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #243b53;
+  border-radius: 0.4rem;
+}
+
+nav a {
+  color: white;
+}
+
+main {
+  min-height: 22rem;
+}
+
+.anecdote-list {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.anecdote-list li,
+.anecdote {
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ccd6df;
+  border-radius: 0.4rem;
+}
+
+.anecdote-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 35rem;
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+input,
+button {
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+footer {
+  padding: 2rem 0;
+  border-top: 1px solid #ccd6df;
+}

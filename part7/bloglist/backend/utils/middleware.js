@@ -1,0 +1,84 @@
+const jwt = require('jsonwebtoken')
+
+const User = require('../models/user')
+const config = require('./config')
+const logger = require('./logger')
+
+const requestLogger = (request, response, next) => {
+  const body = request.body?.password
+    ? { ...request.body, password: '[REDACTED]' }
+    : request.body
+
+  logger.info('Method:', request.method)
+  logger.info('Path:  ', request.path)
+  logger.info('Body:  ', body)
+  logger.info('---')
+  next()
+}
+
+const unknownEndpoint = (request, response) => {
+  response.status(404).json({ error: 'unknown endpoint' })
+}
+
+const tokenExtractor = (request, response, next) => {
+  const authorization = request.get('authorization')
+  request.token = authorization?.toLowerCase().startsWith('bearer ')
+    ? authorization.substring(7)
+    : null
+  next()
+}
+
+const userExtractor = async (request, response, next) => {
+  try {
+    if (!request.token) {
+      return response.status(401).json({ error: 'token missing' })
+    }
+
+    const decodedToken = jwt.verify(request.token, config.SECRET)
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' })
+    }
+
+    const user = await User.findById(decodedToken.id)
+    if (!user) {
+      return response.status(401).json({ error: 'user not found' })
+    }
+
+    request.user = user
+    return next()
+  } catch (error) {
+    return next(error)
+  }
+}
+
+const errorHandler = (error, request, response, next) => {
+  logger.error(error.message)
+
+  if (error.name === 'CastError') {
+    return response.status(400).json({ error: 'malformatted id' })
+  }
+  if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
+  if (error.name === 'MongoServerError' && error.code === 11000) {
+    return response
+      .status(400)
+      .json({ error: 'expected username to be unique' })
+  }
+  if (error.name === 'JsonWebTokenError') {
+    return response.status(401).json({ error: 'token invalid' })
+  }
+  if (error.name === 'TokenExpiredError') {
+    return response.status(401).json({ error: 'token expired' })
+  }
+
+  return next(error)
+}
+
+module.exports = {
+  errorHandler,
+  requestLogger,
+  tokenExtractor,
+  unknownEndpoint,
+  userExtractor,
+}

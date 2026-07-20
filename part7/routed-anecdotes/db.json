@@ -1,0 +1,26 @@
+{
+  "anecdotes": [
+    {
+      "content": "If it hurts, do it more often.",
+      "author": "Jez Humble",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+      "votes": 0,
+      "id": "1"
+    },
+    {
+      "content": "Premature optimization is the root of all evil.",
+      "author": "Donald Knuth",
+      "info": "https://wiki.c2.com/?PrematureOptimization",
+      "votes": 0,
+      "id": "2"
+    },
+    {
+      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "author": "Martin Fowler",
+      "info": "https://martinfowler.com/books/refactoring.html",
+      "votes": 0,
+      "id": "3"
+    }
+  ]
+}
+

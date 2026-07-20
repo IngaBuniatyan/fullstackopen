@@ -77,9 +77,10 @@ const App = () => {
         })
         .catch((error) => {
           const noLongerExists = error.response?.status === 404
+          const validationError = error.response?.data?.error
           const message = noLongerExists
             ? `Information of ${name} has already been removed from server`
-            : `Failed to update ${name}`
+            : validationError || `Failed to update ${name}`
 
           if (noLongerExists) {
             setPersons((currentPersons) =>
@@ -104,8 +105,10 @@ const App = () => {
         setNewNumber('')
         showNotification(`Added ${returnedPerson.name}`, 'success')
       })
-      .catch(() => {
-        showNotification(`Failed to add ${name}`, 'error')
+      .catch((error) => {
+        const message =
+          error.response?.data?.error || `Failed to add ${name}`
+        showNotification(message, 'error')
       })
   }
 
